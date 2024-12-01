@@ -4,9 +4,14 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import AuthModal from "@/components/auth-modal";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store"; // Import RootState type
 
 const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Get the authentication state from Redux
+  const isAuthenticated = useSelector((state: RootState) => !!state.auth.user);
 
   return (
     <div className="relative h-screen overflow-hidden bg-gradient-to-b from-background to-secondary">
@@ -79,13 +84,23 @@ const Hero = () => {
             }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button
-              size="lg"
-              className="text-lg px-8 py-4"
-              onClick={() => setIsModalOpen(true)}
-            >
-              Get Started
-            </Button>
+            {isAuthenticated ? (
+              <Button
+                size="lg"
+                className="text-lg px-8 py-4"
+                onClick={() => alert("Navigate to upload page")}
+              >
+                Upload
+              </Button>
+            ) : (
+              <Button
+                size="lg"
+                className="text-lg px-8 py-4"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Get Started
+              </Button>
+            )}
           </motion.div>
         </motion.div>
       </div>
