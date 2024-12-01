@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@supabase/supabase-js": "^2.46.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "next-themes": "^0.4.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-reconciler": "^0.29.2",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7"
+  }
+}
