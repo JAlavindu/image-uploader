@@ -1,14 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import AuthModal from "@/components/auth-modal";
 import { useSelector } from "react-redux";
-import { RootState } from "@/store/store"; // Import RootState type
+import { useRouter } from "next/navigation";
+// Import useRouter for navigation
+import { RootState } from "@/redux/store";
 
 const Hero = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter(); // Initialize the router hook
 
   // Get the authentication state from Redux
   const isAuthenticated = useSelector((state: RootState) => !!state.auth.user);
@@ -88,7 +89,7 @@ const Hero = () => {
               <Button
                 size="lg"
                 className="text-lg px-8 py-4"
-                onClick={() => alert("Navigate to upload page")}
+                onClick={() => alert("Navigate to upload page")} // Navigate to upload page (modify with real path)
               >
                 Upload
               </Button>
@@ -96,7 +97,7 @@ const Hero = () => {
               <Button
                 size="lg"
                 className="text-lg px-8 py-4"
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => router.push("/auth")} // Redirect to the auth page
               >
                 Get Started
               </Button>
@@ -104,8 +105,6 @@ const Hero = () => {
           </motion.div>
         </motion.div>
       </div>
-
-      <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 };
